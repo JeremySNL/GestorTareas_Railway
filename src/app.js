@@ -6,12 +6,14 @@ import { verificarToken } from "./middlewares/auth.middleware.js"
 import authRoutes from "./routes/auth.routes.js"
 import v1TareasRoutes from "./routes/v1/tareas.routes.js"
 import v2TareasRoutes from "./routes/v2/tareas.routes.js"
+import cors from "cors";
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(loggerMiddleware)
+app.use(cors())
 
 // Rutas públicas
 app.use("/auth", authRoutes)
