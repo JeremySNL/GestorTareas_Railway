@@ -10,6 +10,11 @@ export const getTareasPublicas = async (req, res, next) => {
 export const createTareaPublica = async (req, res, next) => {
   try {
     const { titulo, usuarioId } = req.body
+    
+    if (!titulo) {
+      return res.status(400).json({ error: "Titulo es requerido" });
+    }
+    
     const tarea = await prisma.tarea.create({
       data: { titulo, usuarioId }
     })
